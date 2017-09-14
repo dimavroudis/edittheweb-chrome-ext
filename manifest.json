@@ -1,0 +1,30 @@
+{
+
+  "manifest_version": 2,
+  "name": "God Mode",
+  "version": "1.0",
+
+  "description": "Edit every website like a simple document. Click the icon to enter the editor mode, add the the cursor wherever you want and start typing. ",
+
+  "icons": {
+    "16": "icons/console.png",
+    "48": "icons/console.png"
+  },
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/console.png",
+      "48": "icons/console.png",
+      "96": "icons/console.png",
+      "256": "icons/console.png"
+    },
+    "default_title": "Activate/Deactivate"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+
+}

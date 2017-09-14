@@ -1,0 +1,1 @@
+document.body.contentEditable == "true" ? document.body.contentEditable=false : document.body.contentEditable=true;
