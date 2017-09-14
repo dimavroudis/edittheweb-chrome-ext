@@ -2,16 +2,20 @@
 
   "manifest_version": 2,
   "name": "God Mode",
-  "version": "1.0",
+  "version": "1.1",
 
   "description": "Edit every website like a simple document. Click the icon to enter the editor mode, add the the cursor wherever you want and start typing. ",
 
+  "developer": {
+    "name": "Dimitris Mavroudis",
+    "url": "http://dimitrismavroudis.gr/"
+  },
   "icons": {
     "16": "icons/console.png",
     "48": "icons/console.png"
   },
   "permissions": [
-    "tabs", "http://*/*", "https://*/*"
+    "activeTab", "tabs", "http://*/*", "https://*/*", "contextMenus"
   ],
   "browser_action": {
     "default_icon": {
