@@ -5,30 +5,25 @@ function execScript(){
     });
 };
 
-chrome.browserAction.onClicked.addListener(function(){
+chrome.pageAction.onClicked.addListener(function(){
     execScript();
 });
 
 chrome.contextMenus.create({
   id: "edit-page",
-  title: "Edit this page",
+  title: "Enable/Disable God Mode",
   contexts: ["all"],
   onclick: execScript
 });
 
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.editable == "true"){
-      chrome.contextMenus.update(
-        "edit-page",
-        {title: "Stop editing this page"}
-      );
+      chrome.pageAction.show(sender.tab.id);
       console.log("The page \"" + sender.tab.url +"\" is being edited.");
     }else{
-      chrome.contextMenus.update(
-        "edit-page",
-        {title: "Edit this page"}
-      );
+      chrome.pageAction.hide(sender.tab.id);
       console.log("The page \"" + sender.tab.url +"\" returned to normal.");
     };
   }
