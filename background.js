@@ -1,30 +1,36 @@
-
-function execScript(){
-    var executing = chrome.tabs.executeScript(null, {
-        file: "editmodetoggle.js"
-    });
+function editTheWeb() {
+	var executing = chrome.tabs.executeScript(null, {
+		file: 'editableToggle.js'
+	});
 };
 
-chrome.pageAction.onClicked.addListener(function(){
-    execScript();
-});
-
 chrome.contextMenus.create({
-  id: "edit-page",
-  title: "Enable/Disable God Mode",
-  contexts: ["all"],
-  onclick: execScript
+	id: 'edit-web-toggle',
+	title: 'Enable editing',
+	contexts: ['all']
 });
 
+chrome.contextMenus.onClicked.addListener( function() {
+	editTheWeb()
+});
+
+chrome.pageAction.onClicked.addListener(function() {
+	editTheWeb()
+});
 
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if (request.editable == "true"){
-      chrome.pageAction.show(sender.tab.id);
-      console.log("The page \"" + sender.tab.url +"\" is being edited.");
-    }else{
-      chrome.pageAction.hide(sender.tab.id);
-      console.log("The page \"" + sender.tab.url +"\" returned to normal.");
-    };
-  }
+	function (request, sender, sendResponse) {
+		if (request.editable == true) {
+
+			chrome.contextMenus.update('edit-web-toggle', {
+				title: 'Disable editing',
+			});
+		} else {
+
+			chrome.contextMenus.update('edit-web-toggle', {
+				title: 'Enable editing',
+			});
+
+		};
+	}
 );
